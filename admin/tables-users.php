@@ -4,6 +4,7 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
   exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,7 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -119,158 +120,95 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
           <span>User List</span>
         </a>
       </li><!-- End Profile Page Nav -->
+
     </ul>
   </aside><!-- End Sidebar-->
+
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
-      <?php
-      // Your message code
-      if (isset($_SESSION['message'])) {
-        echo '<h4 class="alert alert-warning">' . $_SESSION['message'] . '</h4>';
-        unset($_SESSION['message']);
-      } // Your message code
-      ?>
+      <h1>User Details--> </h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Data</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section dashboard">
+    <section class="section">
       <div class="row">
-
-        <!-- Left side columns -->
         <div class="col-lg-12">
-          <div class="row">
 
-            <!-- Sales Card -->
-            <div class="col-md-3">
-              <div class="card info-card sales-card">
-                <div class="card-body">
-                  <h5 class="card-title">Buy USDT<span>| Total </span></h5>
+          <div class="card">
+            <div class="card-body">
+              <div class="card mb-3 mt-3 pb-2">
+                <div class="pt-2 pb-2 ">
+                  <h5 class="card-title text-center pb-0 fs-4">Create New User</h5>
+                </div>
 
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-cart"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>145</h6>
+                <form class="row g-3 needs-validation" action="" id="userForm">
+                  <div class="col-3">
+                    <input type="hidden" name="id" class="form-control" id="id">
+                    <input type="text" name="name" class="form-control" id="username" placeholder="Full Name" required>
 
+                    <div class="invalid-feedback">Please, enter your name!</div>
+                  </div>
+
+
+                  <div class="col-3">
+                    <div class="input-group has-validation">
+                      <span class="input-group-text" id="inputGroupPrepend">@</span>
+                      <input type="text" name="username" class="form-control" id="user_id" placeholder="Unique Username" required>
+                      <div class="invalid-feedback">Please choose a username.</div>
                     </div>
                   </div>
-                </div>
 
-              </div>
-            </div><!-- End Sales Card -->
-
-            <!-- Revenue Card -->
-            <div class="col-md-3">
-              <div class="card info-card revenue-card">
-                <div class="card-body">
-                  <h5 class="card-title">Buy INR<span>| Total</span></h5>
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>$3,264</h6>
-                    </div>
+                  <div class="col-2">
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                    <div class="invalid-feedback">Please enter your password!</div>
                   </div>
-                </div>
+                  <div class="col-2">
+                    <input type="text" name="mobile" class="form-control" id="mobile" placeholder="Mobile No." required>
+                    <div class="invalid-feedback">Please enter your Mobile No.!</div>
+                  </div>
+
+
+                  <div class="col-2">
+                    <button class="btn btn-primary w-100" type="submit" id="btnUser">Create Account</button>
+                  </div>
+
+                </form>
               </div>
-            </div><!-- End Revenue Card -->
 
-            <!-- Reports -->
-            <div class="col-12">
-              <div class="card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
 
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
+              <h5 class="card-title">User Tables</h5>
 
-                <div class="card-body">
-                  <h5 class="card-title">Reports <span>/Today</span></h5>
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">User_ID</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="ubody">
 
-                  <!-- Line Chart -->
-                  <div id="reportsChart"></div>
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
 
-                  <script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                      new ApexCharts(document.querySelector("#reportsChart"), {
-                        series: [{
-                          name: 'Sales',
-                          data: [31, 40, 28, 51, 42, 82, 56],
-                        }, {
-                          name: 'Revenue',
-                          data: [11, 32, 45, 32, 34, 52, 41]
-                        }, {
-                          name: 'Customers',
-                          data: [15, 11, 32, 18, 9, 24, 11]
-                        }],
-                        chart: {
-                          height: 350,
-                          type: 'area',
-                          toolbar: {
-                            show: false
-                          },
-                        },
-                        markers: {
-                          size: 4
-                        },
-                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                        fill: {
-                          type: "gradient",
-                          gradient: {
-                            shadeIntensity: 1,
-                            opacityFrom: 0.3,
-                            opacityTo: 0.4,
-                            stops: [0, 90, 100]
-                          }
-                        },
-                        dataLabels: {
-                          enabled: false
-                        },
-                        stroke: {
-                          curve: 'smooth',
-                          width: 2
-                        },
-                        xaxis: {
-                          type: 'datetime',
-                          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                        },
-                        tooltip: {
-                          x: {
-                            format: 'dd/MM/yy HH:mm'
-                          },
-                        }
-                      }).render();
-                    });
-                  </script>
-                  <!-- End Line Chart -->
-
-                </div>
-
-              </div>
-            </div><!-- End Reports -->
-
+            </div>
           </div>
-        </div><!-- End Left side columns -->
 
-
-
+        </div>
       </div>
     </section>
 
@@ -301,6 +239,8 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/jqajax_users.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>

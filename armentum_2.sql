@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `armentum`
+-- Database: `armentum_2`
 --
 
 -- --------------------------------------------------------
@@ -31,16 +31,15 @@ CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `admin_name` varchar(255) NOT NULL,
   `admin_id` varchar(255) NOT NULL,
-  `admin_pass` varchar(255) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp()
+  `admin_pass` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `admin_name`, `admin_id`, `admin_pass`, `date`) VALUES
-(1, 'Empire Admin', 'admin', 'admin', '2022-02-27');
+INSERT INTO `admin` (`id`, `admin_name`, `admin_id`, `admin_pass`) VALUES
+(1, 'Empire Admin', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -53,16 +52,15 @@ CREATE TABLE `orders` (
   `user_name` varchar(255) NOT NULL,
   `usdt_rate` float NOT NULL,
   `usdt_total` bigint(20) NOT NULL,
-  `inr_total` bigint(20) NOT NULL,
-  `order_date` date NOT NULL DEFAULT current_timestamp()
+  `inr_total` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_name`, `usdt_rate`, `usdt_total`, `inr_total`, `order_date`) VALUES
-(10, 'amir', 75.3, 1000, 7530, '2022-02-27');
+INSERT INTO `orders` (`id`, `user_name`, `usdt_rate`, `usdt_total`, `inr_total`) VALUES
+(10, 'amir', 75.3, 1000, 7530);
 
 -- --------------------------------------------------------
 
@@ -74,16 +72,15 @@ CREATE TABLE `sale` (
   `id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `inr_total` bigint(20) NOT NULL,
-  `utr` bigint(20) NOT NULL,
-  `sale_date` date NOT NULL DEFAULT current_timestamp()
+  `utr` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sale`
 --
 
-INSERT INTO `sale` (`id`, `user_name`, `inr_total`, `utr`, `sale_date`) VALUES
-(11, 'amir', 60000, 758656, '2022-02-27');
+INSERT INTO `sale` (`id`, `user_name`, `inr_total`, `utr`) VALUES
+(11, 'amir', 60000, 758656);
 
 -- --------------------------------------------------------
 
@@ -94,8 +91,7 @@ INSERT INTO `sale` (`id`, `user_name`, `inr_total`, `utr`, `sale_date`) VALUES
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `userName` varchar(255) NOT NULL,
-  `userPass` varchar(255) NOT NULL,
-  `dateUser` date NOT NULL DEFAULT current_timestamp()
+  `userPass` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

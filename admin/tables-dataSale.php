@@ -1,5 +1,5 @@
-<?php session_start(); 
-if(!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true){
+<?php session_start();
+if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true) {
   header("location: admin_login.php");
   exit;
 }
@@ -46,93 +46,87 @@ if(!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true){
 
 <body>
 
-    <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top d-flex align-items-center">
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
 
-      <div class="d-flex align-items-center justify-content-between">
-        <a href="index.php" class="logo d-flex align-items-center">
-          <img src="assets/img/logo.png" alt="">
-          <span class="d-none d-lg-block">NiceAdmin</span>
-        </a>
-        <i class="bi bi-list toggle-sidebar-btn"></i>
-      </div><!-- End Logo -->
-  
-      <nav class="header-nav ms-auto">
-        <ul class="d-flex align-items-center">
-          <li class="nav-item dropdown pe-3">
-  
-            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-              <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-              <span class="d-none d-md-block dropdown-toggle ps-2"><?= $_SESSION['auth_user']['admin_name']; ?></span>
-            </a><!-- End Profile Iamge Icon -->
-  
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-              <li>
-                <a class="dropdown-item d-flex align-items-center" href="logout.php">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Log Out</span>
-                </a>
-              </li>
-  
-            </ul><!-- End Profile Dropdown Items -->
-          </li><!-- End Profile Nav -->
-  
-        </ul>
-      </nav><!-- End Icons Navigation -->
-  
-    </header><!-- End Header -->
-  
-    <!-- ======= Sidebar ======= -->
-    <aside id="sidebar" class="sidebar">
-  
-      <ul class="sidebar-nav" id="sidebar-nav">
-  
-        <li class="nav-item">
-          <a class="nav-link " href="index.php">
-            <i class="bi bi-grid"></i>
-            <span>Dashboard</span> 
-          </a>
-        </li><!-- End Dashboard Nav -->
-  
-        <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-layout-text-window-reverse"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
-          </a>
-          <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.php" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">NiceAdmin</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?= $_SESSION['auth_admin']['admin_name']; ?></span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li>
-              <a href="tables-data.php">
-                <i class="bi bi-circle"></i><span>Buy</span>
+              <a class="dropdown-item d-flex align-items-center" href="logout.php">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Log Out</span>
               </a>
             </li>
-            <li>
-              <a href="tables-dataSale.php">
-                <i class="bi bi-circle"></i><span>Sales</span>
-              </a>
-            </li>
-          </ul>
-        </li><!-- End Tables Nav -->
-  
-        <li class="nav-heading">Pages</li>
-  
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="users-profile.html">
-            <i class="bi bi-person"></i>
-            <span>Profile</span>
-          </a>
-        </li><!-- End Profile Page Nav -->
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-register.html">
-            <i class="bi bi-card-list"></i>
-            <span>Register</span>
-          </a>
-        </li><!-- End Register Page Nav -->
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
       </ul>
-    </aside><!-- End Sidebar-->
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="index.php">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="tables-data.php">
+              <i class="bi bi-circle"></i><span>Buy</span>
+            </a>
+          </li>
+          <li>
+            <a href="tables-dataSale.php">
+              <i class="bi bi-circle"></i><span>Sales</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Tables Nav -->
+
+      <li class="nav-heading">Pages</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="tables-users.php">
+          <i class="bi bi-person"></i>
+          <span>User List</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+    </ul>
+  </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Transfer INR Details--> <?php echo date("l jS \of F Y");?></h1>
+      <h1>Transfer INR Details--> <?php echo date("l jS \of F Y"); ?></h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
@@ -149,7 +143,7 @@ if(!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true){
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Datatables</h5>
-              
+
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
@@ -163,7 +157,7 @@ if(!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true){
                   </tr>
                 </thead>
                 <tbody id="sbody">
-                  
+
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->

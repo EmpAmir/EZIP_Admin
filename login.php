@@ -2,25 +2,25 @@
 session_start();
 include('include/dbConn.php');
 
-if (isset($_POST['admin_login'])) {
-  $admin_id = mysqli_real_escape_string($conn, $_POST['username']);
-  $admin_pass = mysqli_real_escape_string($conn, $_POST['password']);
+if (isset($_POST['login'])) {
+  $user_id = mysqli_real_escape_string($conn, $_POST['user_id']);
+  $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-  $query = "SELECT * FROM admin where admin_id='$admin_id' and admin_pass='$admin_pass' LIMIT 1";
+  echo $query = "SELECT * FROM users where user_id='$user_id' and userPass='$password' LIMIT 1";
   $query_run = mysqli_query($conn, $query);
 
   if (mysqli_num_rows($query_run) > 0) {
     $row = mysqli_fetch_array($query_run);
 
     // Authenticating Logged In User
-    $_SESSION['authentication'] = true;
+    $_SESSION['authentication_user'] = true;
 
     // Storing Authenticated User data in Session
-    $_SESSION['auth_admin'] = [
+    $_SESSION['auth_user'] = [
       'id' => $row['id'],
-      'admin_name' => $row['admin_name'],
-      'admin_id' => $row['admin_id'],
-      'admin_pass' => $row['admin_pass'],
+      'username' => $row['username'],
+      'user_id' => $row['user_id'],
+      'password' => $row['password'],
     ];
 
     $_SESSION['message'] = "You are Logged In Successfully"; //message to show
@@ -28,7 +28,7 @@ if (isset($_POST['admin_login'])) {
     exit(0);
   } else {
     $_SESSION['message'] = "Invalid ID or Password"; //message to show
-    header("Location: admin_login.php");
+    header("Location: login.php");
     exit(0);
   }
 }
@@ -111,7 +111,7 @@ if (isset($_POST['admin_login'])) {
                       <label for="yourUsername" class="form-label">Username</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
+                        <input type="text" name="user_id" class="form-control" id="yourUsername" required>
                         <div class="invalid-feedback">Please enter your username.</div>
                       </div>
                     </div>
@@ -129,7 +129,7 @@ if (isset($_POST['admin_login'])) {
                       </div>
                     </div>
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" name="admin_login" type="submit">Login</button>
+                      <button class="btn btn-primary w-100" name="login" type="submit">Login</button>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>

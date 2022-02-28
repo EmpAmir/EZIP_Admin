@@ -1,9 +1,10 @@
 <?php session_start();
-if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true) {
-  header("location: admin_login.php");
+if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"] !== true) {
+  header("location: login.php");
   exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,7 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -121,156 +122,50 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
       </li><!-- End Profile Page Nav -->
     </ul>
   </aside><!-- End Sidebar-->
+
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
-      <?php
-      // Your message code
-      if (isset($_SESSION['message'])) {
-        echo '<h4 class="alert alert-warning">' . $_SESSION['message'] . '</h4>';
-        unset($_SESSION['message']);
-      } // Your message code
-      ?>
+      <h1>Transfer INR Details--> <?php echo date("l jS \of F Y"); ?></h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Data</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section dashboard">
+    <section class="section">
       <div class="row">
-
-        <!-- Left side columns -->
         <div class="col-lg-12">
-          <div class="row">
 
-            <!-- Sales Card -->
-            <div class="col-md-3">
-              <div class="card info-card sales-card">
-                <div class="card-body">
-                  <h5 class="card-title">Buy USDT<span>| Total </span></h5>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Datatables</h5>
 
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-cart"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>145</h6>
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">User_Name</th>
+                    <th scope="col">INR_Total</th>
+                    <th scope="col">UTR_No.</th>
+                    <th scope="col">TRF_Date</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="sbody">
 
-                    </div>
-                  </div>
-                </div>
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
 
-              </div>
-            </div><!-- End Sales Card -->
-
-            <!-- Revenue Card -->
-            <div class="col-md-3">
-              <div class="card info-card revenue-card">
-                <div class="card-body">
-                  <h5 class="card-title">Buy INR<span>| Total</span></h5>
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>$3,264</h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Revenue Card -->
-
-            <!-- Reports -->
-            <div class="col-12">
-              <div class="card">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                <div class="card-body">
-                  <h5 class="card-title">Reports <span>/Today</span></h5>
-
-                  <!-- Line Chart -->
-                  <div id="reportsChart"></div>
-
-                  <script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                      new ApexCharts(document.querySelector("#reportsChart"), {
-                        series: [{
-                          name: 'Sales',
-                          data: [31, 40, 28, 51, 42, 82, 56],
-                        }, {
-                          name: 'Revenue',
-                          data: [11, 32, 45, 32, 34, 52, 41]
-                        }, {
-                          name: 'Customers',
-                          data: [15, 11, 32, 18, 9, 24, 11]
-                        }],
-                        chart: {
-                          height: 350,
-                          type: 'area',
-                          toolbar: {
-                            show: false
-                          },
-                        },
-                        markers: {
-                          size: 4
-                        },
-                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                        fill: {
-                          type: "gradient",
-                          gradient: {
-                            shadeIntensity: 1,
-                            opacityFrom: 0.3,
-                            opacityTo: 0.4,
-                            stops: [0, 90, 100]
-                          }
-                        },
-                        dataLabels: {
-                          enabled: false
-                        },
-                        stroke: {
-                          curve: 'smooth',
-                          width: 2
-                        },
-                        xaxis: {
-                          type: 'datetime',
-                          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                        },
-                        tooltip: {
-                          x: {
-                            format: 'dd/MM/yy HH:mm'
-                          },
-                        }
-                      }).render();
-                    });
-                  </script>
-                  <!-- End Line Chart -->
-
-                </div>
-
-              </div>
-            </div><!-- End Reports -->
-
+            </div>
           </div>
-        </div><!-- End Left side columns -->
 
-
-
+        </div>
       </div>
     </section>
 
@@ -301,6 +196,9 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/jqajax.js"></script>
+  <script src="js/jqajax_sale.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
