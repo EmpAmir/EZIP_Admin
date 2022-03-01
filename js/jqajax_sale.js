@@ -35,9 +35,10 @@ $(document).ready(function () {
   $("#btnSale").click(function (e) {
     e.preventDefault();
     let stid = $("#id").val();
+    let uid = $("#user_id").val();
     let nm = $("#inr_stotal").val();
     let em = $("#utr").val();
-    mydata = { id: stid, inr_total: nm, utr: em};
+    mydata = { id: stid, user_id: uid, inr_total: nm, utr: em};
     console.log(mydata);
     $.ajax({
       url: "sale/insert_sale.php",

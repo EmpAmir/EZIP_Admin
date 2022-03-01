@@ -52,7 +52,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block"><?= $_SESSION['auth_user']['username']; ?></span>
+        <span class="d-none d-lg-block text-capitalize"><?= $_SESSION['auth_user']['username']; ?></span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -63,7 +63,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?= $_SESSION['auth_user']['username']; ?></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2 text-capitalize"><?= $_SESSION['auth_user']['username']; ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -231,38 +231,29 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
                       <h5 class="card-title">Buy USDT Details-<?php echo date("l jS \of F Y") ?></h5>
                       <div class="card mb-3 mt-3 pb-2">
                         <div class="pt-2 pb-2 ">
-                          <h5 class="card-title text-center pb-0 fs-4">Create New User</h5>
+                          <h5 class="card-title text-center pb-0 fs-4">Create New Order</h5>
                         </div>
 
-                        <form class="row g-3 needs-validation" action="" id="userForm">
+                        <form class="row g-3 needs-validation" action="" id="orderForm">
                           <div class="col-3">
-                            <input type="hidden" name="id" class="form-control" id="id">
-                            <input type="text" name="name" class="form-control" id="username" placeholder="Full Name" required>
+                            <input type="hidden" name="id" id="id" class="form-control">
+                            <input type="hidden" name="user_id" id="user_id" class="form-control" value="<?= $_SESSION['auth_user']['user_id']; ?>">
+                            <input type="text" name="usdt_rate" class="form-control" id="usdt_rate" placeholder="USDT Rate" required>
 
-                            <div class="invalid-feedback">Please, enter your name!</div>
+                            <div class="invalid-feedback">Please, enter usdt_rate!</div>
+                          </div>
+                          <div class="col-3">
+                            <input type="text" name="usdt_total" class="form-control" id="usdt_total" placeholder="USDT Total" required>
+                            <div class="invalid-feedback">Please enter usdt_total!</div>
+                          </div>
+                          <div class="col-3">
+                            <input type="text" name="inr_total" class="form-control" id="inr_total" placeholder="INR Total" required>
+                            <div class="invalid-feedback">Please enter inr_total !</div>
                           </div>
 
 
                           <div class="col-3">
-                            <div class="input-group has-validation">
-                              <span class="input-group-text" id="inputGroupPrepend">@</span>
-                              <input type="text" name="username" class="form-control" id="user_id" placeholder="Unique Username" required>
-                              <div class="invalid-feedback">Please choose a username.</div>
-                            </div>
-                          </div>
-
-                          <div class="col-2">
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
-                            <div class="invalid-feedback">Please enter your password!</div>
-                          </div>
-                          <div class="col-2">
-                            <input type="text" name="mobile" class="form-control" id="mobile" placeholder="Mobile No." required>
-                            <div class="invalid-feedback">Please enter your Mobile No.!</div>
-                          </div>
-
-
-                          <div class="col-2">
-                            <button class="btn btn-primary w-100" type="submit" id="btnUser">Create Account</button>
+                            <button class="btn btn-primary w-100" type="submit" id="btnOrder">Create New Order</button>
                           </div>
 
                         </form>
@@ -293,7 +284,28 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
                   <div class="card">
                     <div class="card-body">
                       <h5 class="card-title">TRF INR Details-<?php echo date("l jS \of F Y") ?></h5>
+                      <div class="card mb-3 mt-3 pb-2">
+                        <div class="pt-2 pb-2 ">
+                          <h5 class="card-title text-center pb-0 fs-4"> New TRF</h5>
+                        </div>
 
+                        <form class="row g-3 needs-validation" action="" id="saleForm">
+                          <div class="col-4">
+                            <input type="hidden" name="id" class="form-control" id="id">
+                            <input type="hidden" name="user_id" id="user_id" class="form-control" value="<?= $_SESSION['auth_user']['user_id']; ?>">
+                            <input type="text" name="inr_stotal" class="form-control" id="inr_stotal" placeholder="INR Total" required>
+                            <div class="invalid-feedback">Please enter inr_total !</div>
+                          </div>
+                          <div class="col-4">
+                            <input type="text" name="utr" class="form-control" id="utr" placeholder="UTR NO." required>
+                            <div class="invalid-feedback">Please enter TRF UTR NO!</div>
+                          </div>
+                          <div class="col-4">
+                            <button class="btn btn-primary w-100" type="submit" id="btnSale">New TRF</button>
+                          </div>
+
+                        </form>
+                      </div>
                       <!-- Table with stripped rows -->
                       <table class="table datatable">
                         <thead>

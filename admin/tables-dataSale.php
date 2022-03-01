@@ -153,7 +153,7 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
                     <th scope="col">INR_Total</th>
                     <th scope="col">UTR_No.</th>
                     <th scope="col">TRF_Date</th>
-                    <th scope="col">Action</th>
+                    <!-- <th scope="col">Action</th> -->
                   </tr>
                 </thead>
                 <tbody id="sbody">

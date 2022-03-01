@@ -18,7 +18,7 @@ $(document).ready(function () {
             "<tr><td>" +
             x[i].id +
             "</td><td>" +
-            x[i].user_name +
+            x[i].user_id +
             "</td><td>" +
             x[i].usdt_rate +
             "</td><td>" +
@@ -27,11 +27,12 @@ $(document).ready(function () {
             x[i].inr_total +
             "</td><td>" +
             x[i].order_date +
-            "</td><td> <button class='btn btn-warning btn-sm btn-edit'data-sid=" +
-            x[i].id +
-            "><i class='bi bi-pencil-square'></i></button> <button class='btn btn-danger btn-sm btn-del' data-sid=" +
-            x[i].id +
-            "><i class='bi bi-trash-fill'></i></button></td></tr>";
+            "</td></tr>";
+            // <td> <button class='btn btn-warning btn-sm btn-edit'data-sid=" +
+            // x[i].id +
+            // "><i class='bi bi-pencil-square'></i></button> <button class='btn btn-danger btn-sm btn-del' data-sid=" +
+            // x[i].id +
+            // "><i class='bi bi-trash-fill'></i></button></td>
         }
         $("#tbody").html(output1);
       },
@@ -69,7 +70,7 @@ $(document).ready(function () {
     mydata = { sid: id };
     mythis = this;
     $.ajax({
-      url: "buy/delete.php",
+      url: "buy/.php",
       method: "POST",
       data: JSON.stringify(mydata),
       success: function (data) {

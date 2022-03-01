@@ -33,23 +33,24 @@ $(document).ready(function () {
   }
   showdata();
   // Ajax req for insert data
-  $("#btnBuy").click(function (e) {
+  $("#btnOrder").click(function (e) {
     e.preventDefault();
     let stid = $("#id").val();
+    let uid = $("#user_id").val();
     let nm = $("#usdt_rate").val();
     let em = $("#usdt_total").val();
     let pw = $("#inr_total").val();
-    mydata = { id: stid, usdt_rate: nm, usdt_total: em, inr_total: pw };
+    mydata = { id: stid, user_id: uid, usdt_rate: nm, usdt_total: em, inr_total: pw };
     console.log(mydata);
     $.ajax({
       url: "buy/insert.php",
       method: "POST",
       data: JSON.stringify(mydata),
       success: function (data) {
-        // console.log(data);
+        console.log(data);
         msg = "<div>" + data + "</div>";
         $("#msg").html(msg);
-        $("#myForm")[0].reset();
+        $("#orderForm")[0].reset();
         showdata();
       },
     });

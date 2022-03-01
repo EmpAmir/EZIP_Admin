@@ -154,7 +154,7 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
                     <th scope="col">USDT_Total</th>
                     <th scope="col">INR_Total</th>
                     <th scope="col">Buy_Date</th>
-                    <th scope="col">Action</th>
+                    <!-- <th scope="col">Action</th> -->
                   </tr>
                 </thead>
                 <tbody id="tbody">
