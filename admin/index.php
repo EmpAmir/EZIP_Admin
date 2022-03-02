@@ -161,7 +161,7 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
                     <div class="ps-3">
                       <?php
                       include('include/dbConn.php');
-                      $user_id = $_SESSION['auth_user']['user_id'];
+
                       $sql = "select sum(usdt_total) from orders where  DATE(order_date) = CURDATE();";
                       $q = mysqli_query($conn, $sql);
                       $row = mysqli_fetch_array($q);
@@ -251,7 +251,7 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
                     <div class="ps-3">
                       <?php
                       include('include/dbConn.php');
-                      $user_id = $_SESSION['auth_user']['user_id'];
+
                       $sql = "select sum(usdt_total) from orders;";
                       $q = mysqli_query($conn, $sql);
                       $row = mysqli_fetch_array($q);

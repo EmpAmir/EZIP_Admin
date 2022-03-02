@@ -94,13 +94,13 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
-        <a class="nav-link " href="#">
+        <a class="nav-link " href="tables-orders.php">
           <i class="bi bi-currency-dollar"></i>
           <span>All Buy USDT</span>
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
-        <a class="nav-link " href="#">
+        <a class="nav-link " href="tables-sales.php">
           <i class="fa fa-inr"></i>
           <span>All TRF INR</span>
         </a>
@@ -132,95 +132,222 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
         <!-- Left side columns -->
         <div class="col-lg-12">
           <div class="row">
+            <section class="section">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-body p-0">
+                      <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                              <Buy class="card-title p-0">Buy & Sale Today Details -- <span class="alert-warning text-dark"> <?php echo date("l jS \of F Y") ?></span>
+                            </button>
+                          </h2>
+                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                              <div class="row">
+                                <!-- Sales Card -->
+                                <div class="col-md-3">
+                                  <div class="card info-card sales-card">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Buy USDT<span>| Today </span></h5>
 
-            <!-- Sales Card -->
-            <div class="col-md-3">
-              <div class="card info-card sales-card">
-                <div class="card-body">
-                  <h5 class="card-title">Buy USDT<span>| Today </span></h5>
+                                      <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                          <i class="bi bi-currency-dollar"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                          <?php
+                                          include('include/dbConn.php');
+                                          $user_id = $_SESSION['auth_user']['user_id'];
+                                          $sql = "select sum(usdt_total) from orders where user_id ='$user_id' and  DATE(order_date) = CURDATE();";
+                                          $q = mysqli_query($conn, $sql);
+                                          $row = mysqli_fetch_array($q);
+                                          ?>
+                                          <h6><?php echo $row[0] ?></h6>
 
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
-                    </div>
-                    <div class="ps-3">
-                      <?php
-                      include('include/dbConn.php');
-                      $user_id = $_SESSION['auth_user']['user_id'];
-                      $sql = "select sum(usdt_total) from orders where user_id ='$user_id' and  DATE(order_date) = CURDATE();";
-                      $q = mysqli_query($conn, $sql);
-                      $row = mysqli_fetch_array($q);
-                      ?>
-                      <h6><?php echo $row[0] ?></h6>
+                                        </div>
+                                      </div>
+                                    </div>
 
+                                  </div>
+                                </div><!-- End Sales Card -->
+
+                                <!-- Revenue Card -->
+                                <div class="col-md-3">
+                                  <div class="card info-card revenue-card">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Buy INR<span>| Today</span></h5>
+                                      <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                          <i class="fa fa-inr"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                          <?php
+                                          $sql = "select sum(inr_total) from orders where user_id ='$user_id' and  DATE(order_date) = CURDATE();";
+                                          $q = mysqli_query($conn, $sql);
+                                          $buyInr = mysqli_fetch_array($q);
+                                          ?>
+                                          <h6><?php echo $buyInr[0] ?></h6>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div><!-- End Revenue Card -->
+                                <!-- Revenue Card -->
+                                <div class="col-md-3">
+                                  <div class="card info-card customers-card">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Transfered INR<span>| Today</span></h5>
+                                      <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                          <i class="fa fa-inr"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                          <?php
+                                          $sql = "select sum(inr_total) from sale where user_id ='$user_id' and  DATE(sale_date) = CURDATE();";
+                                          $q = mysqli_query($conn, $sql);
+                                          $trfInr = mysqli_fetch_array($q);
+                                          ?>
+                                          <h6><?php echo $trfInr[0] ?></h6>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div><!-- End Revenue Card -->
+                                <!-- Revenue Card -->
+                                <div class="col-md-3">
+                                  <div class="card info-card customers-card2">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Rem. Bal. INR<span>| Today</span></h5>
+                                      <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                          <i class="fa fa-inr"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                          <?php
+                                          $remBal = $buyInr[0] - $trfInr[0];
+                                          ?>
+                                          <h6><?php echo $remBal ?></h6>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div><!-- End Revenue Card -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- total details till now -->
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              <Buy class="card-title p-0">
+                                Buy & Sale Total Details</h5>
+                            </button>
+                          </h2>
+                          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                              <div class="row">
+                                <!-- Sales Card -->
+                                <div class="col-md-3">
+                                  <div class="card info-card sales-card">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Buy USDT<span>| Total </span></h5>
+
+                                      <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                          <i class="bi bi-currency-dollar"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                          <?php
+                                          include('include/dbConn.php');
+                                          $user_id = $_SESSION['auth_user']['user_id'];
+                                          $sql = "select sum(usdt_total) from orders where user_id ='$user_id';";
+                                          $q = mysqli_query($conn, $sql);
+                                          $row = mysqli_fetch_array($q);
+                                          ?>
+                                          <h6><?php echo $row[0] ?></h6>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </div><!-- End Sales Card -->
+
+                                <!-- Revenue Card -->
+                                <div class="col-md-3">
+                                  <div class="card info-card revenue-card">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Buy INR<span>| Total</span></h5>
+                                      <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                          <i class="fa fa-inr"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                          <?php
+                                          $sql = "select sum(inr_total) from orders where user_id ='$user_id';";
+                                          $q = mysqli_query($conn, $sql);
+                                          $buyInr = mysqli_fetch_array($q);
+                                          ?>
+                                          <h6><?php echo $buyInr[0] ?></h6>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div><!-- End Revenue Card -->
+                                <!-- Revenue Card -->
+                                <div class="col-md-3">
+                                  <div class="card info-card customers-card">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Transfered INR<span>| Total</span></h5>
+                                      <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                          <i class="fa fa-inr"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                          <?php
+                                          $sql = "select sum(inr_total) from sale where user_id ='$user_id';";
+                                          $q = mysqli_query($conn, $sql);
+                                          $trfInr = mysqli_fetch_array($q);
+                                          ?>
+                                          <h6><?php echo $trfInr[0] ?></h6>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div><!-- End Revenue Card -->
+                                <!-- Revenue Card -->
+                                <div class="col-md-3">
+                                  <div class="card info-card customers-card2">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Rem. Bal. INR<span>| Total</span></h5>
+                                      <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                          <i class="fa fa-inr"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                          <?php
+                                          $remBal = $buyInr[0] - $trfInr[0];
+                                          ?>
+                                          <h6><?php echo $remBal ?></h6>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div><!-- End Revenue Card -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-
               </div>
-            </div><!-- End Sales Card -->
-
-            <!-- Revenue Card -->
-            <div class="col-md-3">
-              <div class="card info-card revenue-card">
-                <div class="card-body">
-                  <h5 class="card-title">Buy INR<span>| Today</span></h5>
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="fa fa-inr"></i>
-                    </div>
-                    <div class="ps-3">
-                      <?php
-                      $sql = "select sum(inr_total) from orders where user_id ='$user_id' and  DATE(order_date) = CURDATE();";
-                      $q = mysqli_query($conn, $sql);
-                      $buyInr = mysqli_fetch_array($q);
-                      ?>
-                      <h6><?php echo $buyInr[0] ?></h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Revenue Card -->
-            <!-- Revenue Card -->
-            <div class="col-md-3">
-              <div class="card info-card customers-card">
-                <div class="card-body">
-                  <h5 class="card-title">Transfered INR<span>| Today</span></h5>
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="fa fa-inr"></i>
-                    </div>
-                    <div class="ps-3">
-                      <?php
-                      $sql = "select sum(inr_total) from sale where user_id ='$user_id' and  DATE(sale_date) = CURDATE();";
-                      $q = mysqli_query($conn, $sql);
-                      $trfInr = mysqli_fetch_array($q);
-                      ?>
-                      <h6><?php echo $trfInr[0] ?></h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Revenue Card -->
-            <!-- Revenue Card -->
-            <div class="col-md-3">
-              <div class="card info-card customers-card2">
-                <div class="card-body">
-                  <h5 class="card-title">Rem. Bal. INR<span>| Today</span></h5>
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="fa fa-inr"></i>
-                    </div>
-                    <div class="ps-3">
-                      <?php
-                      $remBal = $buyInr[0] - $trfInr[0];
-                      ?>
-                      <h6><?php echo $remBal ?></h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Revenue Card -->
+            </section>
 
             <section class="section">
               <div class="row">
@@ -253,7 +380,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
 
 
                           <div class="col-3">
-                            <button class="btn btn-primary w-100" type="submit" id="btnOrder">Create New Order</button>
+                            <button class="btn btn-primary w-100" type="submit" id="btnOrder">New Order</button>
                           </div>
 
                         </form>
@@ -334,15 +461,9 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>PWDEV</span></strong>. All Rights Reserved
     </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
+
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -359,6 +480,15 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <script src="js/jquery.js"></script>
   <script src="js/jqajax.js"></script>
   <script src="js/jqajax_sale.js"></script>
+
+  <script>
+    // for multiply usdxrate	
+    $('#usdt_rate, #usdt_total').on('input', function() {
+      var usdt_rate = parseFloat($('#usdt_rate').val()) || 0;
+      var usdt_total = parseFloat($('#usdt_total').val()) || 0;
+      $('#inr_total').val(usdt_rate * usdt_total);
+    });
+  </script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>

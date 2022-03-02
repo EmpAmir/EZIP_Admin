@@ -4,7 +4,6 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +11,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -31,6 +30,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
@@ -52,7 +52,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <span class="d-none d-lg-block text-capitalize"><?= $_SESSION['auth_user']['username']; ?></span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -63,7 +63,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?= $_SESSION['auth_admin']['admin_name']; ?></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2 text-capitalize"><?= $_SESSION['auth_user']['username']; ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -88,45 +88,30 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.php">
+        <a class="nav-link" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link active" href="#">
+          <i class="bi bi-currency-dollar"></i>
+          <span>All Buy USDT</span>
         </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="tables-data.php">
-              <i class="bi bi-circle"></i><span>Buy</span>
-            </a>
-          </li>
-          <li>
-            <a href="tables-dataSale.php">
-              <i class="bi bi-circle"></i><span>Sales</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Tables Nav -->
-
-      <li class="nav-heading">Pages</li>
-
+      </li><!-- End Dashboard Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="tables-users.php">
-          <i class="bi bi-person"></i>
-          <span>User List</span>
+        <a class="nav-link " href="tables-sales.php">
+          <i class="fa fa-inr"></i>
+          <span>All TRF INR</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li><!-- End Dashboard Nav -->
     </ul>
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Data Tables</h1>
+      <h1>All Buy USDT Details</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
@@ -157,7 +142,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-                <tbody id="tbody">
+                <tbody id="utbody">
 
                 </tbody>
               </table>
@@ -175,15 +160,9 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>PWDEV</span></strong>. All Rights Reserved
     </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
+
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -198,8 +177,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="js/jquery.js"></script>
-  <script src="js/jqajax.js"></script>
-  <script src="js/jqajax_sale.js"></script>
+  <script src="b_s/jqajax.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>

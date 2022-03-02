@@ -2,6 +2,7 @@
 $(document).ready(function () {
   function showdata() {
     output1 = "";
+    var s = 1;
     $.ajax({
       url: "buy/retrieve.php",
       method: "GET",
@@ -16,7 +17,7 @@ $(document).ready(function () {
         for (i = 0; i < x.length; i++) {
           output1 +=
             "<tr><td>" +
-            x[i].id +
+           s +
             "</td><td>" +
             x[i].usdt_rate +
             "</td><td>" +
@@ -26,6 +27,7 @@ $(document).ready(function () {
             "</td><td> <button class='btn btn-warning btn-sm btn-edit'data-sid=" +
             x[i].id +
             "><i class='bi bi-pencil-square'></i></button></td></tr>";
+            s++;
         }
         $("#tbody").html(output1);
       },
