@@ -1,41 +1,7 @@
 // Ajax req for retreive data
 $(document).ready(function () {
-  function showdata1() {
-    output = "";
-    var s = 1;
-    $.ajax({
-      url: "b_s/retrieve_sale.php",
-      method: "GET",
-      dataType: "json",
-      success: function (data) {
-        // console.log(data);
-        if (data) {
-          x = data;
-        } else {
-          x = "";
-        }
-        for (i = 0; i < x.length; i++) {
-          output +=
-            "<tr><td>" +
-            s + 
-            "</td><td>" +
-            x[i].user_id +
-            "</td><td>" +
-            x[i].inr_total +
-            "</td><td>" +
-            x[i].utr +
-            "</td><td>" +
-            x[i].sale_date +
-            "</td><td> <button class='btn btn-warning btn-sm btn-sedit' data-sid=" +
-            x[i].id +
-            "><i class='bi bi-pencil-square'></i></button></td></tr>";
-            s++;
-        }
-        $("#usbody").html(output);
-      },
-    });
-  }
-  showdata1();
+
+
 
   // Ajax req for insert data
   $("#btnSale").click(function (e) {

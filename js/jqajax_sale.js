@@ -100,4 +100,44 @@ $("tbody").on("click", ".btn-sedit ", function () {
     },
   });
 });
+
+        //Live Search Record
+        $("#search").on("keyup", function () {
+          var search_term = $(this).val();
+
+          $("#sbody").html("");
+
+          $.ajax({
+            url: "sale/api-search.php?search=" + search_term,
+            type: "GET",
+            success: function (data) {
+              if (data.status == false) {
+                $("#sbody").append(
+                  "<tr><td colspan='6'><h2>" + data.message + "</h2></td></tr>"
+                );
+              } else {
+                $.each(data, function (key, value) {
+                  $("#sbody").append(
+                    "<tr>" +
+                      "<td>" +
+                      value.id +
+                      "</td>" +
+                      "<td>" +
+                      value.inr_total +
+                      "</td>" +
+                      "<td>" +
+                      value.utr +
+                      "</td>" +
+                      "</td><td> <button class='btn btn-warning btn-sm btn-sedit' data-sid=" +
+                      value.id +
+                      "><i class='bi bi-pencil-square'></i></button></td></tr>"+
+                      "</tr>"
+                  );
+                });
+              }
+            },
+          });
+        });
+
+
 });

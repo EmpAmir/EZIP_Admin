@@ -386,7 +386,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
                         </form>
                       </div>
                       <!-- Table with stripped rows -->
-                      <table class="table datatable">
+                      <table class="table datatable text-center">
                         <thead>
                           <tr>
                             <th scope="col">#</th>
@@ -434,7 +434,11 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
                         </form>
                       </div>
                       <!-- Table with stripped rows -->
-                      <table class="table datatable">
+                      <div id="search-bar">
+                        <label>Search :</label>
+                        <input type="text" id="search" autocomplete="off" />
+                      </div>
+                      <table class="table datatable text-center">
                         <thead>
                           <tr>
                             <th scope="col">#</th>
@@ -474,7 +478,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <script src="assets/vendor/chart.js/chart.min.js"></script>
   <script src="assets/vendor/echarts/echarts.min.js"></script>
   <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <!-- <script src="assets/vendor/simple-datatables/simple-datatables.js"></script> -->
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="js/jquery.js"></script>
