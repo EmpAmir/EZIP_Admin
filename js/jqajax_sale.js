@@ -4,7 +4,7 @@ $(document).ready(function () {
     output = "";
     var s = 1;
     $.ajax({
-      url: "sale/retrieve_sale.php",
+      url: "sale/sale-retrieve_search.php?search=",
       method: "GET",
       dataType: "json",
       success: function (data) {
@@ -104,11 +104,11 @@ $("tbody").on("click", ".btn-sedit ", function () {
         //Live Search Record
         $("#search").on("keyup", function () {
           var search_term = $(this).val();
-
+         
           $("#sbody").html("");
-
+          var s = 1;
           $.ajax({
-            url: "sale/api-search.php?search=" + search_term,
+            url: "sale/sale-retrieve_search.php?search=" + search_term,
             type: "GET",
             success: function (data) {
               if (data.status == false) {
@@ -118,21 +118,16 @@ $("tbody").on("click", ".btn-sedit ", function () {
               } else {
                 $.each(data, function (key, value) {
                   $("#sbody").append(
-                    "<tr>" +
-                      "<td>" +
-                      value.id +
-                      "</td>" +
-                      "<td>" +
-                      value.inr_total +
-                      "</td>" +
-                      "<td>" +
-                      value.utr +
-                      "</td>" +
-                      "</td><td> <button class='btn btn-warning btn-sm btn-sedit' data-sid=" +
-                      value.id +
-                      "><i class='bi bi-pencil-square'></i></button></td></tr>"+
-                      "</tr>"
-                  );
+                    "<tr><td>" +
+                    s + 
+                    "</td><td>" +
+                    value.inr_total +
+                    "</td><td>" +
+                    value.utr +
+                    "</td><td> <button class='btn btn-warning btn-sm btn-sedit' data-sid=" +
+                    value.id +
+                    "><i class='bi bi-pencil-square'></i></button></td></tr>"
+                  );s++;
                 });
               }
             },

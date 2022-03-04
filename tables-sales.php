@@ -11,7 +11,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>EMPIREZIP|| USER ALL SALE Order Details</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -129,9 +129,9 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Datatables</h5>
-              <div class="table-responsive">
+              <div class="table-responsive px-3">
                 <!-- Table with stripped rows -->
-                <table class="table table-striped table-hover" id="table1">
+                <table class="table table-hover" id="table1" style="border-bottom-color:#dee2e6;">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -184,12 +184,13 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <script src="assets/js/main.js"></script>
   <script>
     $(document).ready(function() {
+      var s = 1;
       $('#table1').DataTable({
         'processing': true,
         'serverSide': true,
         'serverMethod': 'post',
         'ajax': {
-          'url': 'b_s/ajaxfile.php'
+          'url': 'b_s/u_total_sale.php'
         },
         'columns': [{
             data: 'id'

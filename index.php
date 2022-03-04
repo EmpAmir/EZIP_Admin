@@ -11,7 +11,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>EMPIREZIP||Dashboard - USER BUY & SALE Order Details</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -220,14 +220,20 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
                                 <div class="col-md-3">
                                   <div class="card info-card customers-card2">
                                     <div class="card-body">
-                                      <h5 class="card-title">Rem. Bal. INR<span>| Today</span></h5>
+                                      <h5 class="card-title">Rem. Bal. INR | <span class="badge bg-danger text-light">Total</span></h5>
                                       <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                           <i class="fa fa-inr"></i>
                                         </div>
                                         <div class="ps-3">
                                           <?php
-                                          $remBal = $buyInr[0] - $trfInr[0];
+                                          $sql = "select sum(inr_total) from orders where user_id ='$user_id';";
+                                          $q = mysqli_query($conn, $sql);
+                                          $buyInr = mysqli_fetch_array($q);
+                                          $sql = "select sum(inr_total) from sale where user_id ='$user_id';";
+                                          $q = mysqli_query($conn, $sql);
+                                          $saleInr = mysqli_fetch_array($q);
+                                          $remBal = $buyInr[0] - $saleInr[0];
                                           ?>
                                           <h6><?php echo $remBal ?></h6>
                                         </div>

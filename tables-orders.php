@@ -11,7 +11,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>EMPIREZIP|| USER ALL BUY Order Details</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -32,6 +32,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -100,7 +101,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
-        <a class="nav-link " href="tables-sales.php">
+        <a class="nav-link" href="tables-sales.php">
           <i class="fa fa-inr"></i>
           <span>All TRF INR</span>
         </a>
@@ -111,7 +112,7 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>All Buy USDT Details</h1>
+      <h1>All Buy USDT to INR Details--></h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
@@ -128,24 +129,25 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Datatables</h5>
+              <div class="table-responsive px-3">
+                <!-- Table with stripped rows -->
+                <table class="table table-hover" id="table1" style="border-bottom-color:#dee2e6;">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>User_Name</th>
+                      <th>USDT_Rate</th>
+                      <th>USDT_Total</th>
+                      <th>INR_Total</th>
+                      <th>TRF_Date</th>
+                      <!-- <th>Action</th> -->
+                    </tr>
+                  </thead>
+                  <!-- <tbody id="usbody">
 
-              <!-- Table with stripped rows -->
-              <table class="table datatable">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">User_Name</th>
-                    <th scope="col">USDT_Rate</th>
-                    <th scope="col">USDT_Total</th>
-                    <th scope="col">INR_Total</th>
-                    <th scope="col">Buy_Date</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody id="utbody">
-
-                </tbody>
-              </table>
+                </tbody> -->
+                </table>
+              </div>
               <!-- End Table with stripped rows -->
 
             </div>
@@ -162,7 +164,6 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
     <div class="copyright">
       &copy; Copyright <strong><span>PWDEV</span></strong>. All Rights Reserved
     </div>
-
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -173,14 +174,46 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <script src="assets/vendor/chart.js/chart.min.js"></script>
   <script src="assets/vendor/echarts/echarts.min.js"></script>
   <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <!-- <script src="assets/vendor/simple-datatables/simple-datatables.js"></script> -->
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="js/jquery.js"></script>
-  <script src="b_s/jqajax.js"></script>
-
+  <!-- <script src="js/jquery.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <!-- <script src="b_s/jqajax_sale.js"></script> -->
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#table1').DataTable({
+        'processing': true,
+        'serverSide': true,
+        'serverMethod': 'post',
+        'ajax': {
+          'url': 'b_s/u_total_buy.php'
+        },
+        'columns': [{
+            data: 'id'
+          },
+          {
+            data: 'user_id'
+          },
+          {
+            data: 'usdt_rate'
+          },
+          {
+            data: 'usdt_total'
+          },
+          {
+            data: 'inr_total'
+          },
+          {
+            data: 'order_date'
+          },
+        ]
+      });
+    });
+  </script>
 
 </body>
 
