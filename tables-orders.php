@@ -131,24 +131,28 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
               <h5 class="card-title">Datatables</h5>
               <div class="table-responsive px-3">
                 <!-- Table with stripped rows -->
-                <table class="table table-hover" id="table1" style="border-bottom-color:#dee2e6;">
+                <!-- <div id="search-bar">
+                  <label>Search :</label>
+                  <input type="text" id="search" autocomplete="off" />
+                </div> -->
+                <table class="table datatable text-center">
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th>User_Name</th>
-                      <th>USDT_Rate</th>
-                      <th>USDT_Total</th>
-                      <th>INR_Total</th>
-                      <th>TRF_Date</th>
-                      <!-- <th>Action</th> -->
+                      <th scope="col">#</th>
+                      <th scope="col">USER_ID</th>
+                      <th scope="col">USDT_Rate</th>
+                      <th scope="col">USD_Total</th>
+                      <th scope="col">INR_Total</th>
+                      <th scope="col">TRF_Date</th>
+                      <th scope="col">Action</th>
                     </tr>
                   </thead>
-                  <!-- <tbody id="usbody">
-
-                </tbody> -->
+                  <tbody id="tbody">
+                  </tbody>
                 </table>
               </div>
               <!-- End Table with stripped rows -->
+
 
             </div>
           </div>
@@ -180,40 +184,9 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
   <!-- <script src="js/jquery.js"></script> -->
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-  <!-- <script src="b_s/jqajax_sale.js"></script> -->
+  <script src="b_s/jqajax.js"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script>
-    $(document).ready(function() {
-      $('#table1').DataTable({
-        'processing': true,
-        'serverSide': true,
-        'serverMethod': 'post',
-        'ajax': {
-          'url': 'b_s/u_total_buy.php'
-        },
-        'columns': [{
-            data: 'id'
-          },
-          {
-            data: 'user_id'
-          },
-          {
-            data: 'usdt_rate'
-          },
-          {
-            data: 'usdt_total'
-          },
-          {
-            data: 'inr_total'
-          },
-          {
-            data: 'order_date'
-          },
-        ]
-      });
-    });
-  </script>
 
 </body>
 
