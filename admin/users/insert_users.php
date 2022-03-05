@@ -12,7 +12,7 @@ $id = $mydata['id'];
 if (!empty($username) && !empty($user_id) && !empty($password) && !empty($mobile)) {
     $sql = "INSERT INTO users(id,username,user_id,userPass,mobile) VALUES ('$id','$username','$user_id','$password','$mobile') ON DUPLICATE KEY UPDATE username='$username',user_id='$user_id',userPass='$password',mobile='$mobile'";
     if ($conn->query($sql) == TRUE) {
-        echo "New Sale Saved Sucessfully!!";
+        echo "New Users Saved Sucessfully!!";
     } else {
         echo "Unable to Save!!";
     }

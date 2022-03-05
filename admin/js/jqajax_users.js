@@ -90,7 +90,7 @@ $(document).ready(function () {
     });
   });
 // Ajax editing for  data
-$("tbody").on("click", ".btn-sedit ", function () {
+$("tbody").on("click", ".btn-uedit ", function () {
   console.log("Edit Btn Clicked");
   let id = $(this).attr("data-sid");
   mydata = { sid: id };
@@ -102,8 +102,10 @@ $("tbody").on("click", ".btn-sedit ", function () {
     success: function (data) {
       console.log(data);
       $("#id").val(data.id);
-      $("#inr_stotal").val(data.inr_total);
-      $("#utr").val(data.utr);
+      $("#username").val(data.username);
+      $("#user_id").val(data.user_id);
+      $("#password").val(data.userPass);
+      $("#mobile").val(data.mobile);
     },
   });
 });
