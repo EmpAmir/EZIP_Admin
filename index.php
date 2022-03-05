@@ -371,16 +371,16 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
                           <div class="col-3">
                             <input type="hidden" name="id" id="id" class="form-control">
                             <input type="hidden" name="user_id" id="user_id" class="form-control" value="<?= $_SESSION['auth_user']['user_id']; ?>">
-                            <input type="text" name="usdt_rate" class="form-control" id="usdt_rate" placeholder="USDT Rate" required>
+                            <input type="text" name="usdt_rate" autocomplete="off" class="form-control" id="usdt_rate" placeholder="USDT Rate" required>
 
                             <div class="invalid-feedback">Please, enter usdt_rate!</div>
                           </div>
                           <div class="col-3">
-                            <input type="text" name="usdt_total" class="form-control" id="usdt_total" placeholder="USDT Total" required>
+                            <input type="text" name="usdt_total" autocomplete="off" class="form-control" id="usdt_total" placeholder="USDT Total" required>
                             <div class="invalid-feedback">Please enter usdt_total!</div>
                           </div>
                           <div class="col-3">
-                            <input type="text" name="inr_total" class="form-control" id="inr_total" placeholder="INR Total" required>
+                            <input type="text" name="inr_total" autocomplete="off" class="form-control" id="inr_total" placeholder="INR Total" required>
                             <div class="invalid-feedback">Please enter inr_total !</div>
                           </div>
 
@@ -426,11 +426,11 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
                           <div class="col-4">
                             <input type="hidden" name="id" class="form-control" id="id">
                             <input type="hidden" name="user_id" id="user_id" class="form-control" value="<?= $_SESSION['auth_user']['user_id']; ?>">
-                            <input type="text" name="inr_stotal" class="form-control" id="inr_stotal" placeholder="INR Total" required>
+                            <input type="text" name="inr_stotal" autocomplete="off" class="form-control" id="inr_stotal" placeholder="INR Total" required>
                             <div class="invalid-feedback">Please enter inr_total !</div>
                           </div>
                           <div class="col-4">
-                            <input type="text" name="utr" class="form-control" id="utr" placeholder="UTR NO." required>
+                            <input type="text" name="utr" autocomplete="off" class="form-control" id="utr" placeholder="UTR NO." required>
                             <div class="invalid-feedback">Please enter TRF UTR NO!</div>
                           </div>
                           <div class="col-4">

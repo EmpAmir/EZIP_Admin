@@ -148,6 +148,20 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
                   </thead>
                   <tbody id="sbody">
                   </tbody>
+                  <tr>
+                    <?php
+                    include('include/dbConn.php');
+                    $user_id = $_SESSION['auth_user']['user_id'];
+                    $sql1 = "select sum(inr_total) from sale where user_id ='$user_id';";
+                    $q1 = mysqli_query($conn, $sql1);
+                    $row1 = mysqli_fetch_array($q1);
+                    ?>
+                    <th colspan="2">Total</th>
+                    <th>₹ <?php echo $row1[0] ?></th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
                 </table>
               </div>
               <!-- End Table with stripped rows -->

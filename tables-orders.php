@@ -143,12 +143,31 @@ if (!isset($_SESSION["authentication_user"]) || $_SESSION["authentication_user"]
                       <th scope="col">USDT_Rate</th>
                       <th scope="col">USD_Total</th>
                       <th scope="col">INR_Total</th>
-                      <th scope="col">TRF_Date</th>
+                      <th scope="col">BUY_Date</th>
                       <th scope="col">Action</th>
                     </tr>
+
                   </thead>
                   <tbody id="tbody">
+
                   </tbody>
+                  <tr>
+                    <?php
+                    include('include/dbConn.php');
+                    $user_id = $_SESSION['auth_user']['user_id'];
+                    $sql = "select sum(usdt_total) from orders where user_id ='$user_id';";
+                    $q = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_array($q);
+                    $sql1 = "select sum(inr_total) from orders where user_id ='$user_id';";
+                    $q1 = mysqli_query($conn, $sql1);
+                    $row1 = mysqli_fetch_array($q1);
+                    ?>
+                    <th colspan="3">Total</th>
+                    <th>$ <?php echo $row[0] ?></th>
+                    <th>₹ <?php echo $row1[0] ?></th>
+                    <td></td>
+                    <td></td>
+                  </tr>
                 </table>
               </div>
               <!-- End Table with stripped rows -->
