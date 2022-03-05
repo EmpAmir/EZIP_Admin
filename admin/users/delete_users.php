@@ -6,11 +6,10 @@ $id = $mydata['sid'];
 
 //deleteing student 
 if (!empty($id)) {
-    $sql = "DELETE FROM sale WHERE  id={$id}";
+    $sql = "DELETE FROM users WHERE  id={$id}";
     if ($conn->query($sql) == TRUE) {
         echo 1;
 } else {
     echo 0;
 }
 }
-?>

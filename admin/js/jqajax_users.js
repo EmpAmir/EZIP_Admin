@@ -25,8 +25,6 @@ $(document).ready(function () {
             x[i].userPass +
             "</td><td>" +
             x[i].mobile +
-            "</td><td>" +
-            x[i].user_date +
             "</td><td> <button class='btn btn-warning btn-sm btn-uedit' data-sid=" +
             x[i].id +
             "><i class='bi bi-pencil-square'></i></button> <button class='btn btn-danger btn-sm btn-udel' data-sid=" +
@@ -64,12 +62,13 @@ $(document).ready(function () {
   });
 
   // Ajax delete for  data
-  $("tbody").on("click", ".btn-sdel", function () {
+  $("tbody").on("click", ".btn-udel", function () {
     // console.log("delete");
     let id = $(this).attr("data-sid");
     // console.log(id);
     mydata = { sid: id };
     mythis = this;
+    if(confirm('Are you sure to delete this record ?')) {
     $.ajax({
       url: "users/delete_users.php",
       method: "POST",
@@ -88,6 +87,7 @@ $(document).ready(function () {
         // showdata2();
       },
     });
+  }
   });
 // Ajax editing for  data
 $("tbody").on("click", ".btn-uedit ", function () {

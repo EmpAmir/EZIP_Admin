@@ -52,7 +52,7 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <span class="d-none d-lg-block"><?= $_SESSION['auth_admin']['admin_name']; ?></span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -149,7 +149,7 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
                 </div>
 
                 <form class="row g-3 needs-validation" action="" id="userForm">
-                  <div class="col-3">
+                  <div class="col-2">
                     <input type="hidden" name="id" class="form-control" id="id">
                     <input type="text" name="name" class="form-control" id="username" placeholder="Full Name" required>
 
@@ -157,7 +157,7 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
                   </div>
 
 
-                  <div class="col-3">
+                  <div class="col-2">
                     <div class="input-group has-validation">
                       <span class="input-group-text" id="inputGroupPrepend">@</span>
                       <input type="text" name="username" class="form-control" id="user_id" placeholder="Unique Username" required>
@@ -173,8 +173,6 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
                     <input type="text" name="mobile" class="form-control" id="mobile" placeholder="Mobile No." required>
                     <div class="invalid-feedback">Please enter your Mobile No.!</div>
                   </div>
-
-
                   <div class="col-2">
                     <button class="btn btn-primary w-100" type="submit" id="btnUser">Create Account</button>
                   </div>
@@ -195,7 +193,7 @@ if (!isset($_SESSION["authentication"]) || $_SESSION["authentication"] !== true)
                     <th scope="col">User_ID</th>
                     <th scope="col">Password</th>
                     <th scope="col">Mobile</th>
-                    <th scope="col">Date</th>
+                    <!-- <th scope="col">OLD_INR_Bal</th> -->
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
